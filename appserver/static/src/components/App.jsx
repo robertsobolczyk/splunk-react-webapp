@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>xx Content of dashboard -> AppComponent</h1>
+        <h1>xxyy Content of dashboard -> AppComponent</h1>
         
         <Button
           icon="chart line"

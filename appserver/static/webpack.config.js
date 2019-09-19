@@ -10,11 +10,16 @@ module.exports = (component) => {
     entry: `./src/${component}.app.js`,
     output: {
       path: path.join(__dirname, `./dist/${component}`),
-      filename: "index_bundle.js",
-      libraryTarget: 'amd',
+      filename: `${component}.bundle.js`,
+      libraryTarget: 'amd', //@todo test
     },
     resolve: {
       extensions: ['.js', '.jsx'],
+    },
+    devServer: {
+      contentBase: path.join(__dirname, `dist/${component}`),
+      compress: true,
+      port: 9000
     },
     module: {
       rules: [{

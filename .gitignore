@@ -9,7 +9,6 @@
 
 # dependencies
 /appserver/static/node_modules
-/appserver/static/dist
 
 # IDEs and editors
 /.idea

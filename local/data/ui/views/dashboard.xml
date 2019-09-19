@@ -1,4 +1,4 @@
-<dashboard script="dashboard.js" stylesheet='app.css' theme="dark" hideEdit="true">
+<dashboard script="dashboard.js" stylesheet='app.css' hideEdit="true">
   <label>Dashboard</label>
   <row>
     <panel>
