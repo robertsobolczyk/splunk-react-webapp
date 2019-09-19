@@ -1,5 +1,8 @@
 # Splunk React App
 
+App currently consists of two xml views: dashboard and settings
+These views are separate React components that are reusing the same build system and we are able to share some code between them.
+
 ### Start
 
 1. Create app name=reactapp, folder=reactapp
@@ -7,7 +10,7 @@
 
 ```
 cd /Applications/Splunk/etc/apps/reactapp
-git clone https://github.com/robertsobolczyk/splunk-react-app .
+git clone https://github.com/robertsobolczyk/splunk-react-webapp.git .
 ```
 
 
