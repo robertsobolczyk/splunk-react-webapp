@@ -1,25 +1,22 @@
 # Splunk React App
 
-App currently consists of two xml views: dashboard and settings
-These views are separate React components that are reusing the same build system and we are able to share some code between them.
+App currently consists of two xml views: dashboard and settings. These views are separate React components that are reusing the same build system and we are able to share some code between them.
 
-### Start
+### Install
 
-1. Create app name=reactapp, folder=reactapp
-2. Update it's content
+1. Download app
 
 ```
 cd /Applications/Splunk/etc/apps
-rm -rf reactapp & git clone https://github.com/robertsobolczyk/splunk-react-webapp.git reactapp & cd reactapp
+mkdir reactapp && git clone https://github.com/robertsobolczyk/splunk-react-webapp.git reactapp && cd reactapp
 ```
 
-
-3. Install dependencies
+2. Install dependencies
 `cd appserver/static && npm install`
 
-4. Build apps `npm run build`
+3. Build apps `npm run build`
 
-5. Restart splunk (because we have overwritten whole app)
+4. Restart splunk
 
 ### Work process
 
