@@ -9,8 +9,8 @@ These views are separate React components that are reusing the same build system
 2. Update it's content
 
 ```
-cd /Applications/Splunk/etc/apps/reactapp
-git clone https://github.com/robertsobolczyk/splunk-react-webapp.git .
+cd /Applications/Splunk/etc/apps
+rm -rf reactapp & git clone https://github.com/robertsobolczyk/splunk-react-webapp.git reactapp & cd reactapp
 ```
 
 
