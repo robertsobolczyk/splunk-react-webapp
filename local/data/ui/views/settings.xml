@@ -1,0 +1,11 @@
+<dashboard script="settings.js" stylesheet='app.css' hideEdit="true">
+  <label>Settings</label>
+  <row>
+    <panel>
+      <html>
+        <h1>Settings h1</h1>
+        <div id="root"/>
+      </html>
+    </panel>
+  </row>
+</dashboard>

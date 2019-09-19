@@ -1,0 +1,11 @@
+<dashboard script="dashboard.js" stylesheet='app.css' theme="dark" hideEdit="true">
+  <label>Dashboard</label>
+  <row>
+    <panel>
+      <html>
+        <h1>Dashboard h1</h1>
+        <div id="root"/>
+      </html>
+    </panel>
+  </row>
+</dashboard>
