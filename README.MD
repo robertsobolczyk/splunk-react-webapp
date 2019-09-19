@@ -19,7 +19,11 @@ rm -rf reactapp & git clone https://github.com/robertsobolczyk/splunk-react-weba
 
 4. Build apps `npm run build`
 
-5. After every change inside React rebuild app and your changes should be visible after refresh
+5. Restart splunk (because we have overwritten whole app)
+
+### Work process
+
+After every change inside React rebuild app and your changes should be visible after refresh
 
 * If u want to build just one app `npm run buildDashboard` or `npm run buildSettings`
 
