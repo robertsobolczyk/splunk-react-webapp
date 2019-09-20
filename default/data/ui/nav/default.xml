@@ -1,4 +1,4 @@
 <nav>
-  <view name="dashboard" default='true' />
-  <view name="settings" />
+  <view name="dashboard"  />
+  <view name="settings" default='true' />
 </nav>

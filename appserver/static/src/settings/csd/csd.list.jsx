@@ -1,54 +1,51 @@
 import React from "react";
-import { Button, Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Header, Button, Table, Modal, Icon } from 'semantic-ui-react'
 
+const CsdForm = require('./csd.form').default;
+const CsdDelete = require('./csd.delete').default;
 
-const items = [
-  {
-    csdId: 'A',
-    description: 'Lorem ipsum'
-  },
-  {
-    csdId: 'B',
-    description: 'Lorem ipsum'
-  },
-  {
-    csdId: 'C',
-    description: 'Lorem ipsum'
-  },
-  {
-    csdId: 'D',
-    description: 'Lorem ipsum'
-  }
-];
 
 class CsdList extends React.Component {
 
+  state = {items: []};
+
+  constructor(props) {
+    super(props);
+    this.state = {items: props.items};
+  }
+
   render() {
-    return (
-        <div>
-        <Button label="elo"/>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>CSD ID</Table.HeaderCell>
-              <Table.HeaderCell>Description</Table.HeaderCell>
+
+    return [
+      <CsdForm/>,
+      <Table celled>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>CSD ID</Table.HeaderCell>
+            <Table.HeaderCell>Description</Table.HeaderCell>
+            <Table.HeaderCell>Action</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+
+          {this.state.items.map((item, key) => {
+            return <Table.Row>
+              <Table.Cell>{item.csdId}</Table.Cell>
+              <Table.Cell>{item.description}</Table.Cell>
+              <Table.Cell>
+                <CsdForm item={item}/>
+                <CsdDelete item={item}/>
+              </Table.Cell>
             </Table.Row>
-          </Table.Header>
+          })}
 
-          <Table.Body>
+        </Table.Body>
 
-            {items.map((item, key) => {
-              return <Table.Row>
-                <Table.Cell>{item.csdId}</Table.Cell>
-                <Table.Cell>{item.description}</Table.Cell>
-              </Table.Row>
-            })}
+      </Table>
 
-          </Table.Body>
+    ]
 
-        </Table>
-        </div>
-      );
   }
 }
 
