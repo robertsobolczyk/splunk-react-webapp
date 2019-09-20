@@ -12,7 +12,7 @@ class CsdForm extends React.Component {
     _createdAt: [""],
     _updatedAt: [""],
     _key: [""],
-    csdId: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
+    csdId: ["", [Validators.required]],
     description: ["", [Validators.maxLength(80)]],
   });
 
@@ -58,9 +58,11 @@ class CsdForm extends React.Component {
   submitLabel = () => this.state.updateMode ? 'Save' : 'Submit';
   submitIcon = () => this.state.updateMode ? 'pencil' : 'add';
 
+  csIdMask = [/[1-9A-Za-z]/];
+
   fieldGroup =  (
       <FieldGroup control={this.form} render={() => (<Form onSubmit={this.handleSubmit}>
-        <FieldControl name="csdId" render={TextInput} meta={{label: "CSD ID"}}/>
+        <FieldControl name="csdId" render={TextInput} meta={{label: "CSD ID", "mask": this.csIdMask}}/>
         <FieldControl name="description" render={TextAreaInput} meta={{label: "Description"}}/>
       </Form>)}
       />);
