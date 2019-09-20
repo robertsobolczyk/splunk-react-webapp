@@ -8,7 +8,7 @@ class CsdDelete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {...this.state, item: props.item};
-    console.log('remove ', props.item);
+    this.onSuccess = props.onSuccess;
   }
 
   componentDidMount() {
@@ -23,7 +23,7 @@ class CsdDelete extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({modalOpen: false});
-    alert(JSON.stringify(this.state.item));
+    this.onSuccess(this.state.item);
   };
 
 

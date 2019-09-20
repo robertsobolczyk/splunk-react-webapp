@@ -1,14 +1,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const App = require('./components/App').default;
+const DashboardComponent = require('./dashboard/dashboard.component').default;
 
 module.exports = {
-
   start: function (props) {
-    ReactDOM.render(
-        <App props={props} />,
-        document.getElementById('root')
-    );
-
+    ReactDOM.render([<DashboardComponent/>], document.getElementById('root'));
   }
 };

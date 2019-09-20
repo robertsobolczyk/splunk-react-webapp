@@ -19,7 +19,10 @@ module.exports = (component) => {
     devServer: {
       contentBase: path.join(__dirname, `dist/${component}`),
       compress: true,
-      port: 9000
+      port: 9000,
+      proxy: {
+        '/en-US/splunkd': 'http://localhost:8000'
+      }
     },
     module: {
       rules: [{

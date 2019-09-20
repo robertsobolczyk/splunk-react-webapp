@@ -8,6 +8,10 @@ class CsdForm extends React.Component {
   state = {modalOpen: false, formValid: false, item: {}, updateMode: false};
 
   form = FormBuilder.group({
+    _user: [""], // @todo to remove
+    _createdAt: [""],
+    _updatedAt: [""],
+    _key: [""],
     csdId: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(1)]],
     description: ["", [Validators.maxLength(80)]],
   });
@@ -15,18 +19,26 @@ class CsdForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {item: this.form.value};
+    this.onSuccess = props.onSuccess;
     if(props.item) {
       this.state = {...this.state, item: props.item, updateMode: true};
     }
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.item){
+      this.setState({item: nextProps.item});
+    }
+  }
+
+  componentDidMount () {
     this.form.valueChanges.subscribe((value) => {
       this.setState( {formValid: this.form.valid});
     })
   }
 
   handleOpen = () => {
+    this.form.reset();
     this.form.setValue(this.state.item);
     this.form.updateValueAndValidity();
     this.setState({modalOpen: true});
@@ -36,14 +48,14 @@ class CsdForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(this.form.value));
+    this.onSuccess(this.form.value);
     this.setState({modalOpen: false});
   };
 
   buttonLabel = () => this.state.updateMode ? 'Edit' : 'Create';
   buttonColor = () => this.state.updateMode ? 'blue' : 'green';
-  formLabel = () => this.state.updateMode ? 'Update CSD' : 'Create CSD';
-  submitLabel = () => this.state.updateMode ? 'Update CSD' : 'Create CSD';
+  formLabel = () => this.state.updateMode ? 'Update' : 'Create';
+  submitLabel = () => this.state.updateMode ? 'Save' : 'Submit';
   submitIcon = () => this.state.updateMode ? 'pencil' : 'add';
 
   fieldGroup =  (
