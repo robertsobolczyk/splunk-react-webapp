@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "npm run buildDashboard && npm run buildSettings",
-    "buildDashboard": "webpack --env=dashboard",
-    "buildSettings": "webpack --env=settings",
+    "buildDashboard": "webpack --env=dashboard && cp index.html dist/dashboard/index.html",
+    "buildSettings": "webpack --env=settings && cp index.html dist/settings/index.html",
     "watch": "webpack --env=settings --watch",
     "start": "webpack-dev-server --env=settings --open"
   },
