@@ -72,9 +72,7 @@ class CsdForm extends React.Component {
         <Modal
             dimmer="inverted"
             size="tiny"
-            trigger={<Button inverted color={this.buttonColor()} attached="right" style={{marginRight: '10px'}} onClick={this.handleOpen}>
-              {this.buttonLabel()}
-            </Button>}
+            trigger={<Button inverted color={this.buttonColor()} style={{marginRight: '10px'}} onClick={this.handleOpen}>{this.buttonLabel()}</Button>}
             open={this.state.modalOpen}
             onClose={this.handleClose}>
           <Header icon={this.submitIcon()} content={this.formLabel()} />

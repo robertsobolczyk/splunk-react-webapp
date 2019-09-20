@@ -24,32 +24,31 @@ class CsdList extends React.Component {
   };
 
   onCreate = (item) => {
+    this.setState({isLoading: true})
     this.api.create(item).then(createdItem => {
-      this.setState({items: [...this.state.items, createdItem]});
+      this.setState({items: [...this.state.items, createdItem], isLoading: false});
     })
   };
 
   onUpdate = (item) => {
+    this.setState({isLoading: true})
     this.api.update(item._key, item).then(updatedItem => {
       const items = [...this.state.items];
       const index = items.findIndex(i => i._key === item._key);
       items[index] = updatedItem;
-      this.setState({items});
+      this.setState({items, isLoading: false});
     })
   };
 
   onDelete = (item) => {
+    this.setState({isLoading: true})
     this.api.delete(item._key).then(_ => {
       const items = this.state.items;
       const index = items.findIndex(i => i._key === item._key);
       items.splice(index, 1);
-      this.setState({items});
+      this.setState({items, isLoading: false});
     })
   };
-
-  getItem = (_key) => {
-    return this.state.items.find(i => i._key === _key);
-  }
 
   timestampToDate = (timestamp) => {
     return new Date(timestamp * 1000).toDateString();
