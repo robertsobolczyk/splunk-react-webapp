@@ -1,7 +1,7 @@
 import React from "react";
 import {Menu, Segment } from 'semantic-ui-react'
-const CsdList = require('./csd/csd.list').default;
 import "semantic-ui-css/semantic.min.css";
+import CsdList from './csd/csd.list';
 
 class SettingsComponent extends React.Component {
 

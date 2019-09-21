@@ -1,12 +1,14 @@
 const path = require("path");
 const appName = 'reactapp';
 
+module.exports = (temp) => {
 
-module.exports = (component) => {
+  const args = temp.split('.');
+  const component = args[0];
+  const env = args[1];
 
   const config = {
-    mode: 'development',
-    devtool: 'inline-source-map',
+    mode: env,
     entry: `./src/${component}.app.js`,
     output: {
       path: path.join(__dirname, `./dist/${component}`),
@@ -14,7 +16,7 @@ module.exports = (component) => {
       libraryTarget: 'amd', //@todo test
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', ".ts", ".tsx"],
     },
     devServer: {
       contentBase: path.join(__dirname, `dist/${component}`),
@@ -26,6 +28,12 @@ module.exports = (component) => {
     },
     module: {
       rules: [{
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: "ts-loader"
+        }]
+      }, {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: "babel-loader"
@@ -44,6 +52,10 @@ module.exports = (component) => {
       }]
     }
   };
+
+  if(env === 'development') {
+    config.devtool = 'inline-source-map';
+  }
 
   return config;
 
