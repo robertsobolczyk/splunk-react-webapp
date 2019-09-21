@@ -1,14 +1,19 @@
-import React from "react";
+import * as React from 'react';
 import {Table, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import {CsdInterface} from './csd.interface';
+import CsdService from './csd.service';
 
 const CsdForm = require('./csd.form').default;
 const CsdDelete = require('./csd.delete').default;
-const CsdService = require('./csd.service').default;
 
+interface CsdListState {
+  isLoading: boolean;
+  items: CsdInterface[];
+}
 
 class CsdList extends React.Component {
 
-  state = {items: [], isLoading: true};
+  state: CsdListState = {items: [], isLoading: true};
 
   api = new CsdService();
 
@@ -17,22 +22,22 @@ class CsdList extends React.Component {
   };
 
   refreshItems() {
-    this.setState({items: [], isLoading: true})
-    this.api.getAll().then((items) => {
+    this.setState({items: [], isLoading: true});
+    this.api.getAll().then((items: CsdInterface[]) => {
       this.setState({items, isLoading: false});
     });
   };
 
-  onCreate = (item) => {
-    this.setState({isLoading: true})
-    this.api.create(item).then(createdItem => {
+  onCreate = (item: CsdInterface) => {
+    this.setState({isLoading: true});
+    this.api.create(item).then((createdItem: CsdInterface) => {
       this.setState({items: [...this.state.items, createdItem], isLoading: false});
     })
   };
 
-  onUpdate = (item) => {
-    this.setState({isLoading: true})
-    this.api.update(item._key, item).then(updatedItem => {
+  onUpdate = (item: CsdInterface) => {
+    this.setState({isLoading: true});
+    this.api.update(item._key, item).then((updatedItem: CsdInterface) => {
       const items = [...this.state.items];
       const index = items.findIndex(i => i._key === item._key);
       items[index] = updatedItem;
@@ -40,17 +45,17 @@ class CsdList extends React.Component {
     })
   };
 
-  onDelete = (item) => {
-    this.setState({isLoading: true})
-    this.api.delete(item._key).then(_ => {
+  onDelete = (item: CsdInterface) => {
+    this.setState({isLoading: true});
+    this.api.delete(item._key).then(() => {
       const items = this.state.items;
-      const index = items.findIndex(i => i._key === item._key);
+      const index = items.findIndex((i: any) => i._key === item._key);
       items.splice(index, 1);
       this.setState({items, isLoading: false});
     })
   };
 
-  timestampToDate = (timestamp) => {
+  timestampToDate = (timestamp: number) => {
     return new Date(timestamp * 1000).toDateString();
   };
 
@@ -76,7 +81,7 @@ class CsdList extends React.Component {
 
         <Table.Body>
 
-          {this.state.items.map((item) => {
+          {this.state.items.map((item: CsdInterface) => {
             return <Table.Row>
               <Table.Cell>{item._key}</Table.Cell>
               <Table.Cell>{item.csdId}</Table.Cell>
