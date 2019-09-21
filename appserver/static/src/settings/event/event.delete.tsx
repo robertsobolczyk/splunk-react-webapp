@@ -1,11 +1,19 @@
-import React from "react";
+import * as React from 'react';
 import { Button, Icon, Modal, Header, Message } from 'semantic-ui-react'
+import {EventInterface} from './event.interface';
 
-class CsdDelete extends React.Component {
 
-  state = {modalOpen: false, item: {}};
+interface EventDeleteProps {
+  item: EventInterface;
+  onSuccess: any;
+}
 
-  constructor(props) {
+class EventDelete extends React.Component<EventDeleteProps> {
+
+  public state: any = {modalOpen: false, item: {}};
+  public onSuccess: any;
+
+  constructor(props: EventDeleteProps) {
     super(props);
     this.state = {...this.state, item: props.item};
     this.onSuccess = props.onSuccess;
@@ -20,13 +28,11 @@ class CsdDelete extends React.Component {
 
   handleClose = () => this.setState({modalOpen: false});
 
-  handleSubmit = (e) => {
+  handleSubmit = ((e: any) => {
     e.preventDefault();
     this.setState({modalOpen: false});
     this.onSuccess(this.state.item);
-  };
-
-
+  });
 
   render() {
     return (
@@ -38,7 +44,7 @@ class CsdDelete extends React.Component {
             </Button>}
             open={this.state.modalOpen}
             onClose={this.handleClose}>
-          <Header icon="cancel" content={"Are you sure you want to delete " + this.state.item.csdId} />
+          <Header icon="cancel" content={"Are you sure you want to delete " + this.state.item.eventId} />
 
           <Modal.Content>
             <Message warning>
@@ -60,4 +66,4 @@ class CsdDelete extends React.Component {
   }
 }
 
-export default CsdDelete;
+export default EventDelete;

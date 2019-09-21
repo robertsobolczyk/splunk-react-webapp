@@ -63,7 +63,7 @@ class CsdList extends React.Component {
 
     return [
       <Segment>
-        <Dimmer inverted active={this.state.isLoading}>
+        <Dimmer inverted active={!!this.state.isLoading}>
           <Loader>Loading</Loader>
         </Dimmer>
       <CsdForm onSuccess={this.onCreate}/>,

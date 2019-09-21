@@ -33,3 +33,6 @@ export = system
 [viewstates]
 access = read : [ * ], write : [ * ]
 export = system
+
+
+[collections/csd] access = read : [admin], write : [admin]
