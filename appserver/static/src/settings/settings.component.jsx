@@ -2,6 +2,7 @@ import React from "react";
 import {Menu, Segment } from 'semantic-ui-react'
 import "semantic-ui-css/semantic.min.css";
 import CsdList from './csd/csd.list';
+import EventList from './event/event.list';
 
 class SettingsComponent extends React.Component {
 
@@ -28,7 +29,8 @@ class SettingsComponent extends React.Component {
         <Segment>
 
           {activeItem === 'csd' && <CsdList/>}
-          {activeItem !== 'csd' && <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />}
+          {activeItem === 'event' && <EventList/>}
+          {(activeItem !== 'csd' && activeItem !== 'event') && <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />}
 
 
         </Segment>

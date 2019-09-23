@@ -46,3 +46,23 @@ enableWebDebug = True
 ```
 
 2. After pulling latest changes make sure to restart splunk
+
+
+### Issues
+
+- Sometimes when I go to settings tab in the app, before the dashboard tab is rendered. Is that a splunk/caching issue or I did something wrong?
+- I tried to restrict Settings tab to only admin but it seems that read access is for every role. It cannot be unchecked
+
+### To discuss
+
+- Currently every dashboard has hideEdit="true", which forbiddes modifing it from UI. We can turn of this function but we need to make sure that with every change a PR to repository will be made in order not to lose these changes.
+- What is name of the APP? :)
+- As far as I know roles and permission scope is persisted outside app itself, therefor we can not keep it in repository and will have to edit it manually on all the instances of splunk.
+- Based on docs Deleting CSD results in removing all corresponding domains and tasks. Any thoughts how we want to approach it?
+- csdId should be unique?
+- Do we want to add any filtering or pagination to csd page? 
+- do we know how many records we can except on each settings page?
+
+### Todos
+- Restrict access to settings page just for admin user
+- Restrict access to kvstore/csd just to admin user

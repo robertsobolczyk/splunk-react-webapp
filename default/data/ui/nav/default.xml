@@ -1,4 +1,9 @@
-<nav>
-  <view name="dashboard"  />
-  <view name="settings" default='true' />
+<nav color="#0072C6">
+  <view name="dashboard"/>
+  <view name="settings" default='true'/>
+  <!--<collection label="Test">-->
+    <!--<view name="dashboard"/>-->
+    <!--<view name="settings"/>-->
+  <!--</collection>-->
+  <!--<a href="http://dev.splunk.com/">Test url</a>-->
 </nav>
