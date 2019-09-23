@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import * as React from 'react';
 import MaskedInput from 'react-text-mask';
 import {TextArea} from 'semantic-ui-react'
