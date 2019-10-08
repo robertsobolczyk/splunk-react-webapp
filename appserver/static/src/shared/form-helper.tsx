@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MaskedInput from 'react-text-mask';
-import {TextArea} from 'semantic-ui-react'
+import {Select, TextArea} from 'semantic-ui-react';
 import "react-datepicker/dist/react-datepicker.css";
 
 // @ts-ignore
@@ -22,6 +22,12 @@ export const TextAreaInput = ({handler, touched, hasError, meta}) => (<div style
     {touched && hasError("maxLength") && `${meta.label} has invalid length`}
     {touched && hasError("minLength") && `${meta.label} has invalid length`}
     </span>
+  <br/>
+</div>);
+
+// @ts-ignore
+export const SelectInput = ({handler, touched, hasError, meta}) => (<div style={{marginBottom: '10px'}}>
+  <Select placeholder={`Enter ${meta.label}`} options={meta.options} {...handler()}/>
   <br/>
 </div>);
 

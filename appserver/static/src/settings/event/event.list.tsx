@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {Table, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import {CsdInterface} from '../csd/csd.interface';
+import CsdService from '../csd/csd.service';
 import EventDelete from './event.delete';
 import EventForm from './event.form';
 import {EventInterface} from './event.interface';
@@ -9,16 +11,29 @@ import EventService from './event.service';
 interface EventListState {
   isLoading: boolean;
   items: EventInterface[];
+  csdItems: CsdInterface[];
 }
 
 class EventList extends React.Component {
 
-  state: EventListState = {items: [], isLoading: true};
+  state: EventListState = {items: [], isLoading: true, csdItems: []};
 
   api = new EventService();
+  csdApi = new CsdService();
+
 
   componentDidMount() {
     this.refreshItems();
+    const csdItems = this.csdApi.getAll().then((csdItemsRaw: CsdInterface[]) => {
+
+      const csdItems = csdItemsRaw.map((item: CsdInterface) => ({
+        key: `${item.csdId}`,
+        value: `${item.csdId}`,
+        text: `${item.csdId}`,
+      }));
+
+      this.setState({csdItems});
+    });
   };
 
   refreshItems() {
@@ -67,7 +82,7 @@ class EventList extends React.Component {
           <Dimmer inverted active={!!this.state.isLoading}>
     <Loader>Loading</Loader>
     </Dimmer>
-    <EventForm onSuccess={this.onCreate}/>,
+    <EventForm onSuccess={this.onCreate} csdItems={this.state.csdItems}/>,
     <Table celled>
     <Table.Header>
         <Table.Row>
@@ -90,7 +105,7 @@ class EventList extends React.Component {
             <Table.Cell>{this.timestampToDate(item._createdAt)}</Table.Cell>
             <Table.Cell>{this.timestampToDate(item._updatedAt)}</Table.Cell>
             <Table.Cell>
-            <EventForm item={item} onSuccess={this.onUpdate}/>
+            <EventForm item={item} onSuccess={this.onUpdate} csdItems={this.state.csdItems}/>
             <EventDelete item={item} onSuccess={this.onDelete}/>
             </Table.Cell>
             </Table.Row>

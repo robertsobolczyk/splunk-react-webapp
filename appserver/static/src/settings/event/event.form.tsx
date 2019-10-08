@@ -1,12 +1,14 @@
 import * as React from 'react';
 import {FormBuilder, FieldGroup, FieldControl, Validators, FormGroup} from 'react-reactive-form';
 import { Button, Form, Icon, Modal, Header } from 'semantic-ui-react';
-import {TextAreaInput, TextInput} from '../../shared/form-helper';
+import {SelectInput, TextAreaInput, TextInput} from '../../shared/form-helper';
+import {CsdInterface} from '../csd/csd.interface';
 import {EventInterface} from './event.interface';
 
 interface EventFormProps {
   item?: EventInterface;
   onSuccess: any;
+  csdItems: CsdInterface[];
 }
 
 interface EventFormState {
@@ -14,16 +16,18 @@ interface EventFormState {
   modalOpen: boolean;
   formValid: boolean;
   item?: EventInterface;
+  csdItems?: CsdInterface[];
 }
 
 class EventForm extends React.Component<EventFormProps> {
 
-  state: EventFormState = {modalOpen: false, formValid: false, updateMode: false};
+  state: EventFormState = {modalOpen: false, formValid: false, updateMode: false, csdItems: []};
 
   form: FormGroup = FormBuilder.group({
     _user: [""], // @todo to remove
     _createdAt: [""],
     _updatedAt: [""],
+    csdId: [""],
     invocationDate: [""],
     revocationDate: [""],
     _key: [""],
@@ -45,6 +49,10 @@ class EventForm extends React.Component<EventFormProps> {
   componentWillReceiveProps(nextProps: any) {
     if(nextProps.item){
       this.setState({item: nextProps.item});
+    }
+
+    if(nextProps.csdItems){
+      this.setState({csdItems: nextProps.csdItems});
     }
   }
 
@@ -77,6 +85,7 @@ class EventForm extends React.Component<EventFormProps> {
 
   fieldGroup =  (
       <FieldGroup control={this.form} render={() => (<Form onSubmit={this.handleSubmit}>
+        <FieldControl name="csdId" render={SelectInput} meta={{label: "Csd Id", options: this.state.csdItems}}/>
         <FieldControl name="eventId" render={TextInput} meta={{label: "Event id"}}/>
         <FieldControl name="description" render={TextAreaInput} meta={{label: "Description"}}/>
         <FieldControl name="invocationDate" render={TextInput} meta={{label: "Invocation date"}}/>
